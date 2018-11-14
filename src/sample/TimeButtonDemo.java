@@ -42,16 +42,16 @@ public class TimeButtonDemo extends Application {
         // write code for buttons
         ImageView i12 = new ImageView(new Image("file:usa.jpg"));
         Button b12 = new Button("12 hr", i12);
-        i12.setFitHeight(50);
-        i12.setFitWidth(80);
+        i12.setFitHeight(25);
+        i12.setFitWidth(40);
         b12.setOnMouseClicked(e -> {
             clock.changeFormat12();
         });
 
         ImageView i24 = new ImageView(new Image("file:eu.jpg"));
         Button b24 = new Button("24 hr", i24);
-        i24.setFitHeight(50);
-        i24.setFitWidth(80);
+        i24.setFitHeight(25);
+        i24.setFitWidth(40);
         b24.setOnMouseClicked(e -> {
             clock.changeFormat24();
         });
@@ -118,7 +118,7 @@ class DigitalClock extends Label {
         // get time and set text with lambda
         this.time = Calendar.getInstance();
         // change text font here
-        this.setFont(new Font("Arial", 20));
+        this.setFont(new Font("Arial", 30));
         // set animation here
         this.animation = new Timeline(
                 new KeyFrame(Duration.seconds(0),
