@@ -279,7 +279,7 @@ class DigitalClock extends Label {
     private final SimpleDateFormat dateFormat12 = new SimpleDateFormat("hh:mm:ss a");
 
     /*
-     * This variable is unused, but was in the sample code, so i'm keeping it.
+     * This variable is unused outside the constructor, but was in the sample code, so i'm keeping it.
      * See the constructor for details.
      */
     private Timeline animation;
@@ -293,7 +293,7 @@ class DigitalClock extends Label {
     /*
      * True if 12-hour format is being used, false if not.
      */
-    private boolean twelve = true;
+    private boolean twelve = false;
 
     /*
      * This method is responsible for updating this Label's text.
