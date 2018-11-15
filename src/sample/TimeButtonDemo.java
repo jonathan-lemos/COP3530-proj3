@@ -11,21 +11,37 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.util.Duration;
 
 import java.io.File;
 import java.util.Calendar;
 import javafx.scene.control.Label;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
-import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 public class TimeButtonDemo extends Application {
+
+    /*
+     * Because i know people will be looking at this source, I will try to explain it to the best of my ability.
+     *
+     * Basically JavaFX has a sort of hierarchy like this:
+     *                      Stage
+      *                       |
+      *                     Scene
+      *                       |
+      *                    Root Node
+      *                   /         \
+      *                Parent      Parent
+      *                Node 1      Node 2 (can have more)
+      *               /     \      /     \
+      *            (child nodes) (child nodes)
+     *
+     * Node : A single object (e.g. a button).
+     * Pane : A container for nodes. The type of pane determines how the nodes are arranged within it.
+     * Scene: Groups all your panes together.
+     */
 
     protected BorderPane getPane() {
         // pane for containing buttons and clock
@@ -40,21 +56,16 @@ public class TimeButtonDemo extends Application {
         clock.setAlignment(Pos.CENTER);
 
         // write code for buttons
-        ImageView i12 = new ImageView(new Image("file:usa.jpg"));
-        Button b12 = new Button("12 hr", i12);
+        ImageView i12 = new ImageView(new Image(new File("usa.jpg").toURI().toString()));
         i12.setFitHeight(25);
         i12.setFitWidth(40);
-        b12.setOnMouseClicked(e -> {
-            clock.changeFormat12();
-        });
+        Button b12 = new Button("12 hr", i12);
 
-        ImageView i24 = new ImageView(new Image("file:eu.jpg"));
-        Button b24 = new Button("24 hr", i24);
+        ImageView i24 = new ImageView(new Image(new File("usa.jpg").toURI().toString()));
         i24.setFitHeight(25);
         i24.setFitWidth(40);
-        b24.setOnMouseClicked(e -> {
-            clock.changeFormat24();
-        });
+        Button b24 = new Button("24 hr", i24);
+
         paneForButtons.getChildren().addAll(b12, b24);
         paneForButtons.setAlignment(Pos.BOTTOM_CENTER);
 
@@ -62,6 +73,12 @@ public class TimeButtonDemo extends Application {
         pane.setBottom(paneForButtons);
 
         // handle button clicks with lambdas
+        b12.setOnMouseClicked(e -> {
+            clock.changeFormat12();
+        });
+        b24.setOnMouseClicked(e -> {
+            clock.changeFormat24();
+        });
 
         // handle keyboard presses with lambdas
         pane.setOnKeyPressed(e -> {
